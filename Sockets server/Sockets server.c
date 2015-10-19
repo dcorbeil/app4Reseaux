@@ -14,11 +14,9 @@
 #define END_OF_STRING  '\0'
 
 
-main(argc, argv)
-int argc;
-char *argv[];
-
-{	int sock, msgsock;
+main(int argc, char *argv[])
+{	
+	int sock, msgsock;
 	int length;
 	int rval;
 	char buf[BUFFER_LENGTH];
@@ -34,7 +32,6 @@ char *argv[];
 	{	fprintf(stderr,"Usage: %s [portnumber]\n", argv[0]);
 		exit(1);
 	}
-
 
 	/*  ???? Indiquer quelle opération on effectue ici????? */
 
