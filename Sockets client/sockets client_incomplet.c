@@ -4,7 +4,6 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
@@ -14,10 +13,9 @@
 #define TEXT_LENGH	   1025
 #define END_OF_STRING  '\0'
 
-
-main(argc, argv)  int argc; char *argv[];
-
-{	int sock;
+main(int argc, char *argv[])
+{	
+	int sock;
 	struct sockaddr_in server;
 	struct hostent *hp;
 	char buf[BUFFER_LENGTH];
@@ -27,8 +25,7 @@ main(argc, argv)  int argc; char *argv[];
 
 	WSADATA wsadata;
 	WORD version = (1 << 8) + 1;  /* Version 1.1 */
-
-
+	
 	if (argc != 1)
 	{	fprintf(stderr,"%s manque d'arguments\n", argv[0]);
 		exit(1);
@@ -38,11 +35,10 @@ main(argc, argv)  int argc; char *argv[];
 
 
 	/*  A faire: Création d'un socket de communication  */
-
-	
+		
 	server.sin_family = AF_INET;  
 	printf("Entrer le nom de la machine distante: "); 
-	gets_s(buf, BUFFER_LENGTH)                    
+	gets_s(buf, BUFFER_LENGTH);
 	hp = gethostbyname(buf);      
 	if (hp == 0)
 	{	fprintf(stderr, "%s: machine inconnue\n", buf);
@@ -59,7 +55,7 @@ main(argc, argv)  int argc; char *argv[];
 	
 	len = strlen(text);
 	if (len == 0)  {
-	if ( /*  envoi de text au serveur  */ ) 
+	if ( 0 /*  envoi de text au serveur  */ ) 
 		{	perror("lors de l'ecriture dans le socket");
 			exit(1);
 		}
