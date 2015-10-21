@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sockets client_incomplet.c">
+    <ClCompile Include="..\..\sockets client.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

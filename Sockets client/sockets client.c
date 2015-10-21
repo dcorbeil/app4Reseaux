@@ -34,7 +34,7 @@ main(int argc, char *argv[])
 		exit(1);
 	}
 
-	/*  A faire: initialisation de Winsock */
+	/* initialisation de Winsock */
 	int result = WSAStartup(MAKEWORD(2, 2), &wsadata);
 	if (result != 0)
 	{
@@ -42,7 +42,7 @@ main(int argc, char *argv[])
 		return 1;
 	}
 
-	/*  A faire: Création d'un socket de communication  */
+	/* Création d'un socket de communication  */
 	server.sin_family = AF_INET;
 
 	ConnectSocket = socket(server.sin_family, SOCK_STREAM, IPPROTO_TCP);
@@ -74,21 +74,32 @@ main(int argc, char *argv[])
 		closesocket(ConnectSocket);
 		ConnectSocket = INVALID_SOCKET;
 	}
-	
-	len = strlen(text);
-	if (len != 0)  
-	{
-		if (send(ConnectSocket, text, len, 0) == SOCKET_ERROR)
-		{
-			printf("L'envoi a failé avec l'erreur: %d\n", WSAGetLastError());
-			closesocket(ConnectSocket);
-			WSACleanup();
-			return 1;
-		}
-	}
 
-	/*  A faire: Fermeture de socket  */
-	/*  A faire: Terminaison de winsock  */
+	do
+	{
+		gets_s(text, BUFFER_LENGTH);
+		len = strlen(text);
+		if (len != 0)
+		{
+			if (send(ConnectSocket, text, len, 0) == SOCKET_ERROR)
+			{
+				printf("L'envoi a failé avec l'erreur: %d\n", WSAGetLastError());
+				closesocket(ConnectSocket);
+				WSACleanup();
+				return 1;
+			}
+		}
+
+		if ((rval = recv(ConnectSocket, buf, sizeof(buf), 0)) < 0)
+		{
+			perror("lors de la lecture du message");
+		}
+		buf[rval] = END_OF_STRING;
+		printf("Recu: '%s'\n", buf);
+
+	} while (len != 0);
+	/* Fermeture de socket  */
+	/* Terminaison de winsock  */
 	closesocket(ConnectSocket);
 	WSACleanup();
 

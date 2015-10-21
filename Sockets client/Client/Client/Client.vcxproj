@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sockets client_incomplet.c" />
+    <ClCompile Include="..\..\sockets client.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CACEA21E-32CC-4E54-8F12-5822FF5C8644}</ProjectGuid>
